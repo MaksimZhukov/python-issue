@@ -1,0 +1,27 @@
+name: test
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test-poetry:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - uses: maksimzhukov/setup-python@main
+        with:
+          python-version: '3.9'
+          cache: poetry
+
+      - name: run
+        run: |
+          ls
+          which python3
+          which poetry
+          poetry install
+          poetry run python3 main.py
