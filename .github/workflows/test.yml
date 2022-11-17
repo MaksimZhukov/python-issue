@@ -19,6 +19,7 @@ jobs:
           cache: poetry
 
       - name: run
+        working-directory: 'poetry project'
         run: |
           ls
           which python3
